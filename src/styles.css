@@ -26,7 +26,8 @@ body {
 .badge,
 .dropdown-menu,
 .form-control,
-.input-group {
+.input-group,
+.btn-custom-drpdwn {
     border-radius: 2px !important;
 }
 
@@ -426,7 +427,8 @@ body {
 }
 
 .form-control,
-.form-select {
+.form-select,
+.btn-custom-drpdwn {
     border: 1px solid #ced4da;
     padding: 10px 12px;
     font-size: 14px;
@@ -434,7 +436,8 @@ body {
 }
 
 .form-control:focus,
-.form-select:focus {
+.form-select:focus,
+.btn-custom-drpdwn:focus {
     border-color: var(--primary-blue);
     box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
 }
@@ -480,4 +483,31 @@ body {
     opacity: 0.4;
     letter-spacing: 0.5px;
     line-height: 1.2;
+}
+
+.btn-custom-drpdwn{
+    width: 100%;
+    max-width: 100%;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-item.active, .dropdown-item:active{
+    background-color: #00B6CD;
+}
+
+.btn-custom-drpdwn:hover{
+    border-color: #00B6CD;
+}
+
+.dropdown-toggle::after{
+    right: 15px;
+    align-self: center;
+}
+
+.dropdown-menu{
+    width: 100%;
 }
