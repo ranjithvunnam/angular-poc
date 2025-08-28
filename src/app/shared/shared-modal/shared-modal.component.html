@@ -1,0 +1,30 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="addSubTypeModalLabel">{{title}}</h5>
+        <button type="button" class="btn-close" (click)="dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form" id="addSubTypeForm">
+            <div class="mb-3" *ngIf="!options?.isTypeOnly;">
+                <label for="parentBodyType" class="form-label">Vehicle Body Type</label>
+                <select class="form-select" id="parentBodyType" formControlName="parentBodyType" required>
+                    <option *ngFor="let sub of options?.bodyTypes" [value]="sub.id">{{sub.label}}</option>
+                </select>
+
+            </div>
+            <div class="mb-3">
+                <label for="subBodyTypeName" class="form-label">{{ options?.isTypeOnly ? 'Type Name' : 'Sub Type Name'}}</label>
+                <input type="text" class="form-control" id="subBodyTypeName" formControlName="name"
+                    placeholder="{{ options?.isTypeOnly ? 'Enter Type Name'  :  'Enter Sub Type'}}" required>
+                <div class="text-danger mt-1" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+                    Name is required.
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-custom" (click)="dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary-custom" (click)="submit()">{{ options?.isTypeOnly ? 'Add Type Name'
+            : 'Add Sub Type'}}</button>
+    </div>
+</div>

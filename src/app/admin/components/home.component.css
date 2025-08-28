@@ -1,0 +1,36 @@
+/* .parent-list {
+  border: 1px solid #ccc;
+  padding: 10px;
+  max-width: 400px;
+}
+
+.parent-item {
+  background: #fafafa;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  cursor: move;
+}
+
+.child-list {
+  margin-top: 8px;
+  padding-left: 20px;
+  border-left: 2px solid #eee;
+}
+
+.child-item {
+  background: #fff;
+  margin-bottom: 6px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  cursor: move;
+}
+
+input {
+  margin-right: 8px;
+  padding: 4px 6px;
+  font-size: 14px;
+}
+button {
+  font-size: 14px;
+} */

@@ -1,0 +1,91 @@
+<!-- Main Content -->
+<div class="main-content">
+    <div class="header">
+        <div class="flex-grow-1">
+            <div class="breadcrumb-text">Manage > Settings > General > Settings</div>
+            <h1 class="page-title">Inventory Settings</h1>
+        </div>
+        <!-- <button class="btn btn-back">
+                <i class="bi bi-arrow-left"></i> Go Back to Dashboard
+            </button> -->
+        <div class="d-none d-md-flex user-profile">
+            <div class="profile-avatar">J</div>
+            <div class="profile-info">
+                <div class="profile-name">Josh</div>
+                <div class="profile-company">FAST AND FURIOUS MOTORS XXL</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-area">
+        <div class="section-header">
+            <div class="d-flex justify-content-between align-items-start flex-column flex-md-row ">
+                <div>
+                    <h2 class="section-title">Body Type Management</h2>
+                    <p class="section-description">
+                        Create and organize custom vehicle body types and sub-body types for your<br>
+                        dealership. These will appear in vehicle entry forms and throughout the platform.
+                    </p>
+                </div>
+                <button class="btn btn-primary-custom" (click)="openTypeModal()">
+                    <i class="bi bi-plus"></i> Add Body Type
+                </button>
+            </div>
+        </div>
+        <div id="bodyTypesList">
+            <div class="body-type-item" data-id="{{body.id}}" *ngFor="let body of bodyTypes; let i = index">
+                <div class="body-type-header">
+                    <div class="body-type-info">
+                        <button class="collapse-toggle" type="button" (click)="toggleCollapse(body.id)">
+                            <i class="bi"
+                                [ngClass]="toggleStates[body.id] ? 'bi-chevron-right' : 'bi-chevron-down'"></i>
+                        </button>
+                        <i class="bi bi-grip-vertical drag-handle"></i>
+                        <span class="body-type-name">{{ body.label }}</span>
+                        <div class="status-badges">
+                            <!-- <span class="badge status-badge">In Use</span> -->
+                            <span class="badge status-badge sub-count">{{ getChildrenForParent(body.id).length }}
+                                sub-types</span>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-icon" (click)="openTypeModal(body)">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-icon" (click)="removeParent(i)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="collapse" [class.show]="toggleStates[body.id]" [id]="body.id + '-SubTypes'" #subTypesList
+                    [attr.data-parent-id]="body.id">
+                    <div class="d-flex justify-content-between align-items-center mb-2 mt-2">
+                        <div class="sub-body-title">Sub-Body Types</div>
+                        <button class="btn btn-outline-custom btn-sm" (click)="openTypeModal(body, false)">
+                            <i class="bi bi-plus"></i> Add Sub-Type
+                        </button>
+                    </div>
+                    <div class="sub-body-types">
+                        <div id="{{body.id}}SubTypesList">
+                            <div class="sub-body-item" *ngFor="let sub of getChildrenForParent(body.id)"
+                                [attr.data-id]="sub.id">
+                                <div class="sub-body-info">
+                                    <i class="bi bi-grip-vertical drag-handle"></i>
+                                    <span class="sub-body-name">{{ sub.label }}</span>
+                                    <!-- <span class="badge status-badge">{{ sub.status }}</span> -->
+                                </div>
+                                <div class="actions">
+                                    <button class="btn btn-icon btn-sm" (click)="openTypeModal(sub, false)"><i
+                                            class="bi bi-pencil"></i></button>
+                                    <button class="btn btn-icon btn-sm" (click)="removeChild(sub)"><i
+                                            class="bi bi-trash"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

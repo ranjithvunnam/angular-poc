@@ -1,0 +1,19 @@
+<!-- <div class="main-content">
+  <div class="dropdown-container">
+<app-cascaded-dropdowns [parentOptions]="bodyTypeOptions" [childOptions]="bodySubTypeOptions" [config]="{
+    parentPlaceholder: 'Select Main Type',
+    childPlaceholder: 'Select Sub Type'
+  }"
+  (selectionChange)="onCascadeSelectionChange($event)"></app-cascaded-dropdowns>
+</div>
+</div> -->
+<div class="main-content">
+  <div class="content-area">
+    <div class="dropdown-container">
+      <app-cascaded-dropdowns [parentOptions]="bodyTypeOptions" [childOptions]="bodySubTypeOptions" [config]="{
+    parentPlaceholder: 'Select Main Type',
+    childPlaceholder: 'Select Sub Type'
+  }" (selectionChange)="onCascadeSelectionChange($event)"></app-cascaded-dropdowns>
+    </div>
+  </div>
+</div>

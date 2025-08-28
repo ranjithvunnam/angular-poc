@@ -1,0 +1,26 @@
+<div class="d-flex align-items-end gap-2">
+  <!-- Parent Select -->
+  <div class="flex-fill">
+    <label class="form-label">Vehicle Body Type</label>
+    <select [disabled]="sortedParentOptions.length === 0" [ngModel]="selectedParentId"
+      (ngModelChange)="onParentChange($event)" class="form-select">
+      <option value=null disabled hidden>{{ config.parentPlaceholder }}</option>
+
+      <option *ngFor="let option of sortedParentOptions" [value]="option.id">
+        {{ option.label }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Child Select -->
+  <div class="flex-fill">
+    <label class="form-label">Vehicle Body Sub Type</label>
+    <select [disabled]="!selectedParentId || filteredChildOptions.length === 0" [ngModel]="selectedChildId"
+      (ngModelChange)="onChildChange($event)" class="form-select" aria-label="Select Child">
+      <option value=null disabled hidden>{{ config.childPlaceholder }}</option>
+      <option *ngFor="let option of filteredChildOptions" [value]="option.id">
+        {{ option.label }}
+      </option>
+    </select>
+  </div>
+</div>
