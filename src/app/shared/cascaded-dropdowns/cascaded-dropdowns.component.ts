@@ -22,6 +22,8 @@ export class CascadedDropdownsComponent {
     parentPlaceholder: 'Select Parent',
     childPlaceholder: 'Select Child',
   };
+  childDropdownOpen = false;
+  parentDropdownOpen = false;
 
   selectedParentId: number | null = null;
   selectedChildId: number | null = null;
@@ -63,5 +65,21 @@ export class CascadedDropdownsComponent {
       parentId: this.selectedParentId,
       childId: this.selectedChildId,
     });
+  }
+
+  get selectedParentLabel(): string {
+    if (this.selectedParentId == null) {
+      return this.config.parentPlaceholder || 'Select Parent';
+    }
+    const selected = this.sortedParentOptions.find(o => o.id === this.selectedParentId);
+    return selected ? selected.label : this.config.parentPlaceholder || 'Select Parent';
+  }
+
+  get selectedChildLabel(): string {
+    if (this.selectedChildId == null) {
+      return this.config.childPlaceholder || 'Select Parent';
+    }
+    const selected = this.childOptions.find(o => o.id === this.selectedChildId);
+    return selected ? selected.label : this.config.childPlaceholder || 'Select Parent';
   }
 }

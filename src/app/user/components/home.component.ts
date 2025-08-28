@@ -16,6 +16,8 @@ export class HomeComponent {
   bodyTypeOptions: DropdownItem[] = [];
   bodySubTypeOptions: DropdownItem[] = [];
 
+  selectedValue: string|undefined;
+
   constructor(private typeService: TypeService) {
     this.typeService.getBodyTypes().subscribe(mt => {
       this.bodyTypeOptions = mt;
@@ -31,7 +33,10 @@ export class HomeComponent {
     console.log('Selected Sub Type ID:', selection.childId);
     if (selection.parentId && selection.childId) {
       const selectedItem = this.bodySubTypeOptions.find(item => item.id === selection.childId);
-      alert('Selected Sub Type ID: '+ selectedItem?.label);
+      this.selectedValue = selectedItem?.label;
+      setTimeout(() => {
+        this.selectedValue = undefined;
+      }, 5000);
     }
   }
 }

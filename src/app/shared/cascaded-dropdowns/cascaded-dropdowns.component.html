@@ -1,60 +1,37 @@
 <div class="d-flex align-items-end gap-2">
   <!-- Parent Select -->
-  <div class="flex-fill">
+  <div class="dropdown flex-fill" [class.disabled]="sortedParentOptions.length === 0">
     <label class="form-label">Vehicle Body Type</label>
-    <select [disabled]="sortedParentOptions.length === 0" [ngModel]="selectedParentId"
-      (ngModelChange)="onParentChange($event)" class="form-select">
-      <option value=null disabled hidden>{{ config.parentPlaceholder }}</option>
+    <button class="btn btn-custom-drpdwn dropdown-toggle" type="button" id="dropdownParentButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false" [disabled]="sortedParentOptions.length === 0"
+      (click)="parentDropdownOpen = !parentDropdownOpen">
+      {{ selectedParentLabel }}
+    </button>
 
-      <option *ngFor="let option of sortedParentOptions" [value]="option.id">
-        {{ option.label }}
-      </option>
-    </select>
+    <ul class="dropdown-menu" aria-labelledby="dropdownParentButton" [class.show]="parentDropdownOpen">
+      <li *ngFor="let option of sortedParentOptions">
+        <a class="dropdown-item" (click)="onParentChange(option.id); parentDropdownOpen=false">
+          {{ option.label }}
+        </a>
+      </li>
+    </ul>
   </div>
+
 
   <!-- Child Select -->
-  <div class="flex-fill">
+  <div class="dropdown flex-fill" [class.disabled]="filteredChildOptions.length === 0">
     <label class="form-label">Vehicle Body Sub Type</label>
-    <select [disabled]="!selectedParentId || filteredChildOptions.length === 0" [ngModel]="selectedChildId"
-      (ngModelChange)="onChildChange($event)" class="form-select" aria-label="Select Child">
-      <option value=null disabled hidden>{{ config.childPlaceholder }}</option>
-      <option *ngFor="let option of filteredChildOptions" [value]="option.id">
-        {{ option.label }}
-      </option>
-    </select>
-  </div>
-
-
-
-  <!-- /////////////////////////// changes from here ////////////////////// -->
-
-  <!-- Parent Select -->
-  <div class="dropdown flex-fill">
-    <label class="form-label">Vehicle Body Type</label>
-    <button class="btn btn-custom-drpdwn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Select Main Type
+    <button class="btn btn-custom-drpdwn dropdown-toggle" type="button" id="dropdownChildButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false" [disabled]="filteredChildOptions.length === 0"
+      (click)="childDropdownOpen = !childDropdownOpen">
+      {{ selectedChildLabel }}
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" >Compact SUV</a>
-      <a class="dropdown-item" >Full Sized SUV</a>
-      <a class="dropdown-item" >Something else here</a>
-    </div>
+    <ul class="dropdown-menu" aria-labelledby="dropdownChildButton" [class.show]="childDropdownOpen">
+      <li *ngFor="let option of filteredChildOptions">
+        <a class="dropdown-item" (click)="onChildChange(option.id); childDropdownOpen=false">
+          {{ option.label }}
+        </a>
+      </li>
+    </ul>
   </div>
-
-  <!-- Child Select -->
-  <div class="dropdown flex-fill">
-    <label class="form-label">Vehicle Body Sub Type</label>
-    <button class="btn btn-custom-drpdwn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Select Sub-Type
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" >Compact SUV</a>
-      <a class="dropdown-item" >Full Sized SUV</a>
-      <a class="dropdown-item" >Something else here</a>
-    </div>
-  </div>
-
-
-
-
 </div>

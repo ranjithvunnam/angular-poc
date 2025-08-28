@@ -3,9 +3,9 @@ import { DropdownItem } from '../../core/models/body-types.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TypeService } from '../../core/services/type.service';
-import Sortable from 'sortablejs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModelComponent } from '../../shared/shared-modal/shared-modal.component';
+import Sortable from 'sortablejs';
 
 @Component({
   selector: 'home-selector',
