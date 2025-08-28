@@ -34,9 +34,6 @@ export class HomeComponent {
     if (selection.parentId && selection.childId) {
       const selectedItem = this.bodySubTypeOptions.find(item => item.id === selection.childId);
       this.selectedValue = selectedItem?.label;
-      setTimeout(() => {
-        this.selectedValue = undefined;
-      }, 5000);
     }
   }
 }
